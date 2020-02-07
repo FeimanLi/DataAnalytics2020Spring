@@ -47,9 +47,9 @@ lmENVH <-lm(ENVHEALTH~DALY+AIR_H+WATER_H)
 lmENVH
 summary(lmENVH)
 cENVH<-coef(lmENVH)
-DALYNEW<-c(seq(5,95,length.out = 231))
-AIR_HNEW<-c(seq(5,95,length.out = 231))
-WATER_HNEW<-c(seq(5,95,length.out = 231))
+DALYNEW<-c(seq(5,95,5))
+AIR_HNEW<-c(seq(5,95,5))
+WATER_HNEW<-c(seq(5,95,5))
 predENVH<-data.frame(DALYNEW,AIR_HNEW,WATER_HNEW)
 names(predENVH) <- c("DALY","AIR_H","WATER_H")
 pENV<- predict(lmENVH,predENVH,interval='prediction')
@@ -58,16 +58,16 @@ pENV
 cENV
 
 #AIR_E
-lmAIR_E <- lm(AIR_E~AIR_H+WATER_E+CLIMATE)
+lmAIR_E <- lm(AIR_E~DALY+AIR_H+WATER_H)
+lmENVH
 lmAIR_E
 summary(lmAIR_E)
 coefAIR_E<-coef(lmAIR_E)
-
-AIR_HNEW <- c(seq(5,95,length.out = length(AIR_E)))
-WATER_ENEW <- c(seq(5,95,length.out = length(AIR_E)))
-CLIMATENEW <- c(seq(5,95,length.out = length(AIR_E)))
-predAIR_E <- data.frame(AIR_HNEW,WATER_ENEW,CLIMATENEW)
-names(predAIR_E) <- c("AIR_HNEW","WATER_ENEW","CLIMATENEW")
+DALYNEW<-c(seq(5,95,5))
+AIR_HNEW<-c(seq(5,95,5))
+WATER_HNEW<-c(seq(5,95,5))
+predAIR_E <- data.frame(DALYNEW,AIR_HNEW,WATER_HNEW)
+names(predAIR_E) <- c("DALY","AIR_H","WATER_H")
 pAIR_E <- predict(lmAIR_E,predAIR_E,interval='prediction')
 cAIR_E<- predict(lmAIR_E,predAIR_E,interval='confidence')
 pAIR_E
@@ -75,15 +75,15 @@ cAIR_E
 
 
 #CLIMATE
-lmCLIMATE <- lm(CLIMATE~AIR_H+WATER_E+FORESTRY)
+lmCLIMATE <- lm(CLIMATE~DALY+AIR_H+WATER_H)
 lmCLIMATE
 summary(lmCLIMATE)
 coeCLIMATE<-coef(lmCLIMATE)
-
-AIR_HNEW <- c(seq(5,95,length.out = length(CLIMATE)))
-WATER_ENEW <- c(seq(5,95,length.out = length(CLIMATE)))
-CLIMATENEW <- c(seq(5,95,length.out = length(CLIMATE)))
-predCLIMATE <- data.frame(AIR_HNEW,WATER_ENEW,FORESTRY)
+DALYNEW<-c(seq(5,95,5))
+AIR_HNEW<-c(seq(5,95,5))
+WATER_HNEW<-c(seq(5,95,5))
+predCLIMATE <- data.frame(DALYNEW,AIR_HNEW,WATER_HNEW)
+names(predCLIMATE) <- c("DALY","AIR_H","WATER_H")
 pCLIMATE <- predict(lmAIR_E,predCLIMATE,interval='prediction')
 cCLIMATE<- predict(lmAIR_E,predCLIMATE,interval='confidence')
 pCLIMATE
